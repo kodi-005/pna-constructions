@@ -13,6 +13,7 @@ export default function About() {
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitStatus, setSubmitStatus] = useState({ type: null, message: "" });
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
   // Contact form handler
   const handleInputChange = (e) => {
@@ -95,19 +96,20 @@ export default function About() {
         <div className="max-w-7xl mx-auto pl-0 pr-4 sm:pr-6 lg:pr-8">
           <div className="flex justify-between items-center h-16">
             <div className="flex items-center">
-              <div className="flex-shrink-0 flex items-center gap-3 -ml-8 sm:-ml-12 lg:-ml-16 xl:-ml-20">
+              <div className="flex-shrink-0 flex items-center gap-2 sm:gap-3 -ml-4 sm:-ml-8 lg:-ml-16 xl:-ml-20">
                 <a href="/" className="block">
                   <img 
                     src="/pnalogo.png" 
                     alt="PNA Construction" 
-                    className="h-16 md:h-20 w-auto object-contain"
+                    className="h-12 sm:h-16 md:h-20 w-auto object-contain"
                   />
                 </a>
-                <a href="/" className="text-lg md:text-xl font-bold text-gray-700 tracking-wider hover:text-yellow-600 transition-colors duration-300 uppercase">
+                <a href="/" className="text-sm sm:text-lg md:text-xl font-bold text-gray-700 tracking-wider hover:text-yellow-600 transition-colors duration-300 uppercase">
                   PNA CONSTRUCTIONS
                 </a>
               </div>
             </div>
+            {/* Desktop Navigation */}
             <div className="hidden md:block">
               <div className="ml-10 flex items-baseline space-x-4">
                 <a href="/" className="text-gray-700 hover:text-yellow-500 px-3 py-2 rounded-md text-sm font-medium transition-colors">Home</a>
@@ -116,8 +118,62 @@ export default function About() {
                 <a href="#contact" className="text-gray-700 hover:text-yellow-500 px-3 py-2 rounded-md text-sm font-medium transition-colors">Contact</a>
               </div>
             </div>
+            {/* Mobile Menu Button */}
+            <div className="md:hidden">
+              <button
+                onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+                className="inline-flex items-center justify-center p-2 rounded-md text-gray-700 hover:text-yellow-500 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-yellow-500 transition-colors"
+                aria-expanded="false"
+                aria-label="Toggle navigation menu"
+              >
+                {isMobileMenuOpen ? (
+                  <svg className="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+                  </svg>
+                ) : (
+                  <svg className="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
+                  </svg>
+                )}
+              </button>
+            </div>
           </div>
         </div>
+        {/* Mobile Menu */}
+        {isMobileMenuOpen && (
+          <div className="md:hidden border-t border-gray-200">
+            <div className="px-2 pt-2 pb-3 space-y-1 bg-white">
+              <a
+                href="/"
+                onClick={() => setIsMobileMenuOpen(false)}
+                className="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-yellow-500 hover:bg-gray-50 transition-colors"
+              >
+                Home
+              </a>
+              <a
+                href="/about"
+                onClick={() => setIsMobileMenuOpen(false)}
+                className="block px-3 py-2 rounded-md text-base font-medium text-gray-900 hover:text-yellow-500 hover:bg-gray-50 transition-colors"
+              >
+                About
+              </a>
+              <a
+                href="/projects"
+                onClick={() => setIsMobileMenuOpen(false)}
+                className="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-yellow-500 hover:bg-gray-50 transition-colors"
+              >
+                Projects
+              </a>
+              <a
+                href="#contact"
+                onClick={() => setIsMobileMenuOpen(false)}
+                className="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-yellow-500 hover:bg-gray-50 transition-colors"
+              >
+                Contact
+              </a>
+            </div>
+          </div>
+        )}
       </nav>
 
       {/* Hero Section with Our Journey */}
