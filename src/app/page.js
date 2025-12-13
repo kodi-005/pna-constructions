@@ -6,8 +6,7 @@ import emailjs from "@emailjs/browser";
 
 export default function Home() {
   const [currentSlide, setCurrentSlide] = useState(0);
-  const totalSlides = 4;
-
+   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   // Contact form state
   const [formData, setFormData] = useState({
     name: "",
