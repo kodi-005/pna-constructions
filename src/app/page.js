@@ -115,19 +115,19 @@ export default function Home() {
   return (
     <div className="min-h-screen bg-white">
       {/* Navigation Header */}
-      <nav className="bg-white shadow-lg sticky top-0 z-50">
-        <div className="max-w-7xl mx-auto pl-0 pr-4 sm:pr-6 lg:pr-8">
-          <div className="flex justify-between items-center h-16">
-            <div className="flex items-center">
-              <div className="flex-shrink-0 flex items-center gap-2 sm:gap-3 -ml-4 sm:-ml-8 lg:-ml-16 xl:-ml-20">
-                <a href="/" className="block">
+      <nav className="bg-white shadow-md md:sticky top-0 z-50">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="flex justify-between items-center h-20 md:h-24">
+            <div className="flex items-center flex-1 min-w-0">
+              <div className="flex-shrink-0 flex items-center gap-3 sm:gap-4">
+                <a href="/" className="block flex-shrink-0">
                   <img 
                     src="/pnalogo.png" 
                     alt="PNA Construction" 
-                    className="h-12 sm:h-16 md:h-20 w-auto object-contain"
+                    className="h-16 sm:h-20 md:h-24 lg:h-28 w-auto object-contain transition-transform duration-300 hover:scale-105"
                   />
                 </a>
-                <a href="/" className="text-sm sm:text-lg md:text-xl font-bold text-gray-700 tracking-wider hover:text-yellow-600 transition-colors duration-300 uppercase">
+                <a href="/" className="text-sm sm:text-base md:text-lg lg:text-xl font-bold text-gray-900 tracking-wide sm:tracking-wider hover:text-yellow-600 transition-colors duration-300 uppercase whitespace-nowrap">
                   PNA CONSTRUCTIONS
                 </a>
               </div>
@@ -142,60 +142,113 @@ export default function Home() {
               </div>
             </div>
             {/* Mobile Menu Button */}
-            <div className="md:hidden">
+            <div className="md:hidden ml-2">
               <button
                 onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-                className="inline-flex items-center justify-center p-2 rounded-md text-gray-700 hover:text-yellow-500 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-yellow-500 transition-colors"
-                aria-expanded="false"
+                className="inline-flex items-center justify-center p-2.5 rounded-lg text-gray-700 hover:text-yellow-600 hover:bg-yellow-50 focus:outline-none focus:ring-2 focus:ring-yellow-500 focus:ring-offset-2 transition-all duration-300 active:scale-95"
+                aria-expanded={isMobileMenuOpen}
                 aria-label="Toggle navigation menu"
               >
-                {isMobileMenuOpen ? (
-                  <svg className="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
-                  </svg>
-                ) : (
-                  <svg className="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
-                  </svg>
-                )}
+                <div className="relative w-6 h-6">
+                  <span
+                    className={`absolute top-0 left-0 w-6 h-0.5 bg-current transform transition-all duration-300 ${
+                      isMobileMenuOpen ? 'rotate-45 translate-y-2.5' : ''
+                    }`}
+                  ></span>
+                  <span
+                    className={`absolute top-2.5 left-0 w-6 h-0.5 bg-current transition-all duration-300 ${
+                      isMobileMenuOpen ? 'opacity-0' : 'opacity-100'
+                    }`}
+                  ></span>
+                  <span
+                    className={`absolute top-5 left-0 w-6 h-0.5 bg-current transform transition-all duration-300 ${
+                      isMobileMenuOpen ? '-rotate-45 -translate-y-2.5' : ''
+                    }`}
+                  ></span>
+                </div>
               </button>
             </div>
           </div>
         </div>
-        {/* Mobile Menu */}
+        {/* Mobile Menu Overlay */}
         {isMobileMenuOpen && (
-          <div className="md:hidden border-t border-gray-200">
-            <div className="px-2 pt-2 pb-3 space-y-1 bg-white">
-              <a
-                href="#home"
-                onClick={() => setIsMobileMenuOpen(false)}
-                className="block px-3 py-2 rounded-md text-base font-medium text-gray-900 hover:text-yellow-500 hover:bg-gray-50 transition-colors"
-              >
-                Home
-              </a>
-              <a
-                href="/about"
-                onClick={() => setIsMobileMenuOpen(false)}
-                className="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-yellow-500 hover:bg-gray-50 transition-colors"
-              >
-                About
-              </a>
-              <a
-                href="/projects"
-                onClick={() => setIsMobileMenuOpen(false)}
-                className="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-yellow-500 hover:bg-gray-50 transition-colors"
-              >
-                Projects
-              </a>
-              <a
-                href="#contact"
-                onClick={() => setIsMobileMenuOpen(false)}
-                className="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-yellow-500 hover:bg-gray-50 transition-colors"
-              >
-                Contact
-              </a>
+          <>
+            <div
+              className="fixed inset-0 bg-black/50 backdrop-blur-sm z-40 md:hidden transition-opacity duration-300"
+              onClick={() => setIsMobileMenuOpen(false)}
+            ></div>
+            <div className="md:hidden fixed top-0 right-0 bottom-0 w-72 max-w-[85vw] bg-white shadow-2xl z-50 transform transition-transform duration-300 ease-out">
+              <div className="flex flex-col h-full pt-20">
+                <div className="px-6 py-6 border-b border-gray-200 bg-gradient-to-br from-yellow-50 to-white">
+                  <div className="flex flex-col items-center text-center">
+                    <div className="mb-3">
+                      <img 
+                        src="/pnalogo.png" 
+                        alt="PNA Construction" 
+                        className="h-16 w-auto object-contain mx-auto drop-shadow-sm"
+                      />
+                    </div>
+                    <h2 className="text-lg font-bold text-gray-900 tracking-wide uppercase mb-1">
+                      PNA CONSTRUCTIONS
+                    </h2>
+                    <p className="text-xs font-medium text-yellow-600 tracking-wider uppercase">
+                      Your Trusted Constructor
+                    </p>
+                  </div>
+                </div>
+                <nav className="flex-1 px-4 py-6 space-y-2 overflow-y-auto">
+                  <a
+                    href="#home"
+                    onClick={() => setIsMobileMenuOpen(false)}
+                    className="flex items-center px-4 py-3.5 rounded-xl text-base font-semibold text-gray-900 bg-yellow-50 text-yellow-600 transition-all duration-200 hover:bg-yellow-100 hover:scale-[1.02] active:scale-[0.98]"
+                  >
+                    <svg className="w-5 h-5 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" />
+                    </svg>
+                    Home
+                  </a>
+                  <a
+                    href="/about"
+                    onClick={() => setIsMobileMenuOpen(false)}
+                    className="flex items-center px-4 py-3.5 rounded-xl text-base font-semibold text-gray-700 transition-all duration-200 hover:bg-gray-50 hover:text-yellow-600 hover:scale-[1.02] active:scale-[0.98]"
+                  >
+                    <svg className="w-5 h-5 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                    </svg>
+                    About
+                  </a>
+                  <a
+                    href="/projects"
+                    onClick={() => setIsMobileMenuOpen(false)}
+                    className="flex items-center px-4 py-3.5 rounded-xl text-base font-semibold text-gray-700 transition-all duration-200 hover:bg-gray-50 hover:text-yellow-600 hover:scale-[1.02] active:scale-[0.98]"
+                  >
+                    <svg className="w-5 h-5 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" />
+                    </svg>
+                    Projects
+                  </a>
+                  <a
+                    href="#contact"
+                    onClick={() => setIsMobileMenuOpen(false)}
+                    className="flex items-center px-4 py-3.5 rounded-xl text-base font-semibold text-gray-700 transition-all duration-200 hover:bg-gray-50 hover:text-yellow-600 hover:scale-[1.02] active:scale-[0.98]"
+                  >
+                    <svg className="w-5 h-5 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 8l7.89 4.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+                    </svg>
+                    Contact
+                  </a>
+                </nav>
+                <div className="px-6 py-4 border-t border-gray-100">
+                  <button
+                    onClick={() => setIsMobileMenuOpen(false)}
+                    className="w-full px-4 py-2.5 rounded-xl text-sm font-semibold text-gray-700 bg-gray-100 hover:bg-gray-200 transition-colors duration-200"
+                  >
+                    Close Menu
+                  </button>
+                </div>
+              </div>
             </div>
-          </div>
+          </>
         )}
       </nav>
 
