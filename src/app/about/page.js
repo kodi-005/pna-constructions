@@ -707,7 +707,7 @@ export default function About() {
           <div className="text-center">
             <div className="flex justify-center mb-4">
               <img 
-                src="/logowhite.png" 
+                src="/pnalogo.png" 
                 alt="PNA Construction" 
                 className="h-16 md:h-20 w-auto object-contain"
               />
